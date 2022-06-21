@@ -18,6 +18,12 @@ p {
     justify-content: center;
 }
 
+.test_layer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .card {
     display: flex;
     justify-content: center;
@@ -31,6 +37,19 @@ p {
     /* background-color: #40abee; */
     flex-wrap: wrap;
   }
+
+.small_card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    height: 65%;
+    width: 80%;
+    /* text-align: center; */
+    border-radius: 5px;
+    background-color: #f3c0f5;
+    flex-wrap: wrap;
+}
 
 
 .welcome{
@@ -53,3 +72,38 @@ p {
     width: 80%;
     margin-top: -3em;
 }
+
+.projects_title{
+    display: flex;
+    justify-content: center;
+}
+
+.project_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+.proj1 {
+     grid-area: 1 / 1 / 2 / 2;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    height: 65%;
+    width: 80%;
+    /* text-align: center; */
+    border-radius: 5px;
+    background-color: #f3c0f5;
+    flex-wrap: wrap;
+}
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 1 / 3 / 2 / 4; }
+.div4 { grid-area: 2 / 1 / 3 / 2; }
+.div5 { grid-area: 2 / 2 / 3 / 3; }
+.div6 { grid-area: 2 / 3 / 3 / 4; }
+.div7 { grid-area: 3 / 1 / 4 / 2; }
+.div8 { grid-area: 3 / 2 / 4 / 3; }
+.div9 { grid-area: 3 / 3 / 4 / 4; }
