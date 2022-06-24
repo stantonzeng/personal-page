@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import { useSpring, animated } from '@react-spring/web'
 import './mainpage.css'
@@ -36,8 +36,15 @@ export function Mainpage(){
   const alignCenter = { display: 'flex', alignItems: 'center' }
 
   const [styles_title, api_title] = useSpring(() => ({ opacity: 1 }))
-  const [styles_one, api_one] = useSpring(() => ({ opacity: 0.5 }))
-  const [styles_two, api_two] = useSpring(() => ({ opacity: 0.5 }))
+  const [styles_one, api_one] = useSpring(() => ({ opacity: opacity_val }))
+  const [styles_two, api_two] = useSpring(() => ({ opacity: opacity_val }))
+
+  const [styles_proj1, api_proj1] = useSpring(() => ({ height: "'300px'" }))
+
+  const [project_one, toggle_one] = useState(true)
+  const [project_two, toggle_two] = useState(true)
+  const [project_three, toggle_three] = useState(true)
+  const [project_four, toggle_four] = useState(true)
 
   const parallax = useRef();
 
@@ -115,10 +122,13 @@ export function Mainpage(){
         <animated.div style = {styles_two}>
           <h1 className = "projects_title">Projects</h1>
             <div className = "project_grid">
-                <div className = "proj1">Project 1</div>
-                <div className = "proj2">Project 2</div>
-                <div className = "proj3">Project 3</div>
-                <div className = "proj4">Project 4</div>
+              <div onClick = {() => toggle_one(!project_one)}>
+                <animated.div className = "proj1" style = {api_proj1.start({height: project_one ? "'300px'" : "'500px'"})} >Project 1</animated.div>
+              </div>
+               
+                <animated.div className = "proj2">Project 2</animated.div>
+                <animated.div className = "proj3">Project 3</animated.div>
+                <animated.div className = "proj4">Project 4</animated.div>
             </div>
         </animated.div>
       </ParallaxLayer>
