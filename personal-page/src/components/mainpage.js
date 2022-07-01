@@ -1,18 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import { useSpring, animated } from '@react-spring/web'
+import teambalancerpic from './springboot.png'
+import tensorflowpic from './tensorflow.png'
+import reactspringpic from './react-spring.png'
+import face from './face.png'
 import './mainpage.css'
 
 const title = 0
 const title_speed = 1.3
 
-const pg_one = 0.9
-const pg_one_speed = 1.5
+const pg_one = 0.7
+const pg_one_speed = 1.2
 
-const pg_two = pg_one+0.1
-const pg_two_speed = 1.5
+const pg_two = pg_one+0.3
+const pg_two_speed = 1
 
 const opacity_val = 0.1
+
+const first_look_val = 400
 
 var locat = 0
 
@@ -24,7 +30,7 @@ function checkBound(placement){
 }
 
 function checkBoundProj(placement){
-  if(placement*500 <= locat && (placement+1.5)*500 >= locat){
+  if((placement+0.6)*500 <= locat && (placement+2.1)*500 >= locat){
     return true;
   }
   return false;
@@ -35,16 +41,47 @@ export function Mainpage(){
   
   const alignCenter = { display: 'flex', alignItems: 'center' }
 
-  const [styles_title, api_title] = useSpring(() => ({ opacity: 1 }))
-  const [styles_one, api_one] = useSpring(() => ({ opacity: opacity_val }))
-  const [styles_two, api_two] = useSpring(() => ({ opacity: opacity_val }))
+  const [styles_title, api_title] = useSpring(() => ({
+    opacity: 0,
+    y : 100 }))
+  
+  const [styles_one, api_one] = useSpring(() => ({ 
+    opacity: 0,
+    y : first_look_val }))
 
-  const [styles_proj1, api_proj1] = useSpring(() => ({ height: "'300px'" }))
+  const [styles_two, api_two] = useSpring(() => ({ 
+    opacity: 0,
+    y : first_look_val }))
 
-  const [project_one, toggle_one] = useState(true)
-  const [project_two, toggle_two] = useState(true)
-  const [project_three, toggle_three] = useState(true)
-  const [project_four, toggle_four] = useState(true)
+  const [styles_proj1_text, api_proj1_text] = useSpring(() => ({ 
+    opacity: 0,
+    x : -first_look_val }))
+
+  const [styles_proj1_pic, api_proj1_pic] = useSpring(() => ({ 
+    opacity: 0,
+    x : first_look_val }))
+
+    const [styles_proj2_pic, api_proj2_pic] = useSpring(() => ({ 
+      opacity: 0,
+      x : first_look_val }))
+  
+  const [styles_proj2_text, api_proj2_text] = useSpring(() => ({ 
+    opacity: 0,
+    x : -first_look_val }))
+
+  const [styles_proj3_pic, api_proj3_pic] = useSpring(() => ({ 
+    opacity: 0,
+    x : first_look_val }))
+  
+  const [styles_proj3_text, api_proj3_text] = useSpring(() => ({ 
+    opacity: 0,
+    x : -first_look_val }))
+
+  var first_look_one = false
+  var first_look_two = false
+  var first_look_proj1 = false;
+  var first_look_proj2 = false;
+  var first_look_proj3 = false;
 
   const parallax = useRef();
 
@@ -59,26 +96,87 @@ export function Mainpage(){
       else{
         api_title.start({opacity : opacity_val})
       }
-    
-      if(checkBound(pg_one)){
-        api_one.start({opacity : 1})
+      
+      if(!first_look_one && checkBound(pg_one)){
+        api_one.start({
+          y: 0,
+          opacity: 1
+        })
+        first_look_one = true
       }
-      else{
-        api_one.start({opacity : opacity_val})
+      if(first_look_one && checkBound(pg_one)){
+        api_one.start({
+          opacity : 1,
+          config: { duration: 500 }})
+      }
+      else if(first_look_one){
+        api_one.start({
+          opacity : opacity_val,
+          config: { duration: 500 }})
       }
 
-      if(checkBoundProj(pg_two+1)){
+      if(!first_look_two && checkBoundProj(pg_two+0.3)){
+        api_two.start({
+          y: 0,
+          opacity: 1
+        })
+        first_look_two = true
+      }
+      if(first_look_two && checkBoundProj(pg_two)){
         api_two.start({opacity : 1})
       }
-      else{
+      else if(first_look_two){
         api_two.start({opacity : opacity_val})
+      }
+
+      if(!first_look_proj1 && checkBoundProj(pg_two+0.5)){
+        api_proj1_pic.start({
+          x: 0,
+          opacity: 1
+        })
+        api_proj1_text.start({
+          x: 0,
+          opacity: 1
+        })
+        
+        first_look_proj1 = true
+      }
+
+      if(!first_look_proj2 && checkBoundProj(pg_two+0.7)){
+        api_proj2_pic.start({
+          x: 0,
+          opacity: 1
+        })
+        api_proj2_text.start({
+          x: 0,
+          opacity: 1
+        })
+        
+        first_look_proj2 = true
+      }
+      if(!first_look_proj3 && checkBoundProj(pg_two+0.9)){
+        api_proj3_pic.start({
+          x: 0,
+          opacity: 1
+        })
+        api_proj3_text.start({
+          x: 0,
+          opacity: 1
+        })
+        
+        first_look_proj3 = true
       }
     }
   }
 
   useEffect(() => {
+    api_title.start({
+      y: 0,
+      opacity:1
+    })
     const container = document.querySelector('.test_layer')
     container.addEventListener('scroll', handleScroll)
+    
     return () => {
       container.removeEventListener('scroll', handleScroll)
     }
@@ -91,11 +189,14 @@ export function Mainpage(){
       justifyContent: 'center',
       alignItems: 'center'  
     }}>
-
-      <animated.div style = {styles_title}>
-        <h1 className = "title">Stanton Zeng</h1>
-        {/* <p className = "subTitle"> Software and Math</p> */}
-      </animated.div>
+      <div className = "title_div">
+        <animated.div style = {styles_title}>
+          <h1 className = "title">Stanton Zeng</h1>
+          
+          {/* <p className = "subTitle"> Software and Math</p> */}
+        </animated.div>
+        {/* <img src = {face} alt = "face"></img> */}
+      </div>
       
       </ParallaxLayer>
       
@@ -120,15 +221,56 @@ export function Mainpage(){
 
       <ParallaxLayer offset = {pg_two} speed = {pg_two_speed} >
         <animated.div style = {styles_two}>
-          <h1 className = "projects_title">Projects</h1>
+          <h1 className = "projects_title">Personal Projects</h1>
             <div className = "project_grid">
-              <div onClick = {() => toggle_one(!project_one)}>
-                <animated.div className = "proj1" style = {api_proj1.start({height: project_one ? "'300px'" : "'500px'"})} >Project 1</animated.div>
-              </div>
-               
-                <animated.div className = "proj2">Project 2</animated.div>
+
+                <animated.div className = "proj1">
+                <a href="https://github.com/stantonzeng/elo-balancer2/">
+                  <animated.div style = {styles_proj1_pic} className = "proj1_pic">
+                    
+                      <img src = {teambalancerpic} alt = "TeamBalancer.com" height = "100%"></img>
+                    
+                  </animated.div>
+                  </a>
+                  <animated.div style = {styles_proj1_text} className = "proj1_text">
+                    <div className = "proj1_title"><b><i>React Java Springboot Postgresql AWS GCP</i></b></div>
+                    <div className = "proj1_paragraph"> Teambalancer is a project that stores player information using a modified version of
+                    the conventional FIDE elo system. It generates balanced and fair teams using the selected players needed. I deployed the 
+                    web app using AWS and Google Cloud Platflorm.</div>
+                  </animated.div>
+                </animated.div>
+
+                <animated.div className = "proj2">
+                <a href = "https://github.com/stantonzeng/sign-langauge-translator">
+                  <animated.div style = {styles_proj2_pic} className = "proj2_pic">
+                    <img src = {tensorflowpic} alt = "2" width = "275px" height = "100%"></img>
+                  </animated.div>
+                </a>
+                  <animated.div style = {styles_proj2_text} className = "proj2_text">
+                    <div className = "proj2_title"><b><i>Python Tensorflow Keras OpenCV</i></b></div>
+                    <div className = "proj2_paragraph"> I developed my own American Sign Langugage Alphabet translator. I utilized Computer
+                    Vision to read in the hand signs and machine learning to interpret what is being shown. Using my own training data and 
+                    CNN model, I was able to achieve a validation accuracy of 85% </div>
+                  </animated.div>
+                </animated.div>
+
+                <animated.div className = "proj3">
+                  <a href = "https://github.com/stantonzeng/personal-page">
+                    <animated.div style = {styles_proj3_pic} className = "proj3_pic">
+                      <img src = {reactspringpic} alt = "3" width = "275px" height = "100%"></img>
+                    </animated.div>
+                  </a>
+                  <animated.div style = {styles_proj3_text} className = "proj3_text">
+                    <div className = "proj3_title"><b><i>Reactjs React-Spring HTML/CSS</i></b></div>
+                    <div className = "proj3_paragraph"> As more practice with front end design, I decided to revamp my old personal projects
+                    site and learn more about javascript and react. </div>
+                  </animated.div>
+                </animated.div>
+                
+                {/* <animated.div className = "proj2">Project 2</animated.div>
                 <animated.div className = "proj3">Project 3</animated.div>
-                <animated.div className = "proj4">Project 4</animated.div>
+                <animated.div className = "proj4">Project 4</animated.div> */}
+            
             </div>
         </animated.div>
       </ParallaxLayer>
