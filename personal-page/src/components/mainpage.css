@@ -11,8 +11,14 @@ p {
 }
 
 .title{
-    font-size: 48px;
+    font-size: 72px;
     margin-block-end: 0em;
+}
+
+.about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .subTitle{
@@ -32,10 +38,10 @@ p {
     align-items: center;
     font-size: 1.25rem;
     height: 65%;
-    width: 80%;
+    width: 90%;
     /* text-align: center; */
     border-radius: 5px;
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
     /* background-color: #40abee; */
     flex-wrap: wrap;
   }
@@ -122,6 +128,7 @@ p {
     /* margin-left: 20%; */
     /* background-color: #d2fcd1; */
 }
+
 .proj1_text, .proj2_text, .proj3_text{
     display: flex;
     margin-left: 8%;
