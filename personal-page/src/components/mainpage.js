@@ -4,22 +4,27 @@ import { useSpring, animated } from '@react-spring/web'
 import teambalancerpic from './springboot.png'
 import tensorflowpic from './tensorflow.png'
 import reactspringpic from './react-spring.png'
+import githubpic from './GitHub-Mark-64px.png'
+import instagrampic from './instagramlogo.png'
 import './mainpage.css'
 
 const title = 0
 const title_speed = 1.3
 
-const pg_one = 0.7
+const pg_one = 0.8
 const pg_one_speed = 1.2
 
 const pg_two = pg_one+0.3
 const pg_two_speed = 1
 
+const pg_three = pg_two+1
+const pg_three_speed = 2
+
 const opacity_val = 0.1
 
 const first_look_val = 400
 
-const opacity_pic = 0.7
+const opacity_pic = 0.5
 
 var locat = 0
 
@@ -164,7 +169,7 @@ export function Mainpage(){
         first_look_one_text3 = true
       }
 
-      if(!first_look_two && checkBoundProj(pg_two+0.3)){
+      if(!first_look_two && checkBoundProj(pg_two+0.1)){
         api_two.start({
           y: 0,
           opacity: 1
@@ -178,7 +183,7 @@ export function Mainpage(){
         api_two.start({opacity : opacity_val})
       }
 
-      if(!first_look_proj1 && checkBoundProj(pg_two+0.5)){
+      if(!first_look_proj1 && checkBoundProj(pg_two+0.3)){
         api_proj1_pic.start({
           x: 0,
           opacity: opacity_pic
@@ -191,7 +196,7 @@ export function Mainpage(){
         first_look_proj1 = true
       }
 
-      if(!first_look_proj2 && checkBoundProj(pg_two+0.7)){
+      if(!first_look_proj2 && checkBoundProj(pg_two+0.5)){
         api_proj2_pic.start({
           x: 0,
           opacity: opacity_pic
@@ -203,7 +208,7 @@ export function Mainpage(){
         
         first_look_proj2 = true
       }
-      if(!first_look_proj3 && checkBoundProj(pg_two+0.9)){
+      if(!first_look_proj3 && checkBoundProj(pg_two+0.7)){
         api_proj3_pic.start({
           x: 0,
           opacity: opacity_pic
@@ -241,8 +246,7 @@ export function Mainpage(){
       <div className = "title_div">
         <animated.div style = {styles_title}>
           <h1 className = "title">Stanton Zeng</h1>
-          
-          {/* <p className = "subTitle"> Software and Math</p> */}
+          {/* <p className = "subTitle"> Stantonzeng@gmail.com </p> */}
         </animated.div>
         {/* <img src = {face} alt = "face"></img> */}
       </div>
@@ -338,11 +342,31 @@ export function Mainpage(){
             
             </div>
         </animated.div>
+        <div className = "contact">
+          <h1> Contact Me </h1>
+           {/* <hr /> */}
+          {/* <img src = {githubpic} alt = "git" width = "64px" height = "64px"></img>
+          <img src = {instagrampic} alt = "insta" width = "64px" height = "64px"></img> */}
+          <div className = "socials">
+            <div className = "insta"><b>Instagram</b></div>
+            <div className = "link"><b>Linkedin</b></div>
+            <div className = "git"><b>Github</b></div>
+            <div className = "face"><b>Facebook</b></div>
+          </div>
+          <hr/>
+          <div className = "email">Stantonzeng@gmail.com</div>
+        </div>
       </ParallaxLayer>
 
       {/* Projects End */}
+      {/* Contact Start */}
+      
+      <ParallaxLayer offset = {pg_three} speed = {pg_three_speed}>
+        
 
+      </ParallaxLayer>
 
+      {/* Contact End */}
       {/* <ParallaxLayer offset = {3}>
         <h1> test </h1>
       </ParallaxLayer> */}
