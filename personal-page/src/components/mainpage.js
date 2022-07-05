@@ -98,14 +98,45 @@ export function Mainpage(){
     opacity: 0,
     x : -first_look_val }))
 
+  const [styles_socials_insta, api_socials_insta] = useSpring(() => ({
+    opacity: 0,
+    y: 200
+  }))
+
+  const [styles_socials_link, api_socials_link] = useSpring(() => ({
+    opacity: 0,
+    y: 200
+  }))
+
+  const [styles_socials_git, api_socials_git] = useSpring(() => ({
+    opacity: 0,
+    y: 200
+  }))
+
+  const [styles_socials_face, api_socials_face] = useSpring(() => ({
+    opacity: 0,
+    y: 200
+  }))
+
+  const [styles_socials_line, api_socials_line] = useSpring(() => ({
+    opacity: 0,
+    y: 200
+  }))
+
+  const [styles_socials_mail, api_socials_mail] = useSpring(() => ({
+    opacity: 0,
+    y: 200
+  }))
+
   var first_look_one_title = false
   var first_look_one_text1 = false;
   var first_look_one_text2 = false;
   var first_look_one_text3 = false; 
   var first_look_two = false
   var first_look_proj1 = false;
-  var first_look_proj2 = false;
-  var first_look_proj3 = false;
+  // var first_look_proj2 = false;
+  // var first_look_proj3 = false;
+  var first_look_socials = false;
 
   const parallax = useRef();
 
@@ -146,6 +177,7 @@ export function Mainpage(){
         api_one_text1.start({
           y: 0,
           opacity: 1
+          
         })
         
         first_look_one_text1 = true
@@ -192,33 +224,105 @@ export function Mainpage(){
           x: 0,
           opacity: 1
         })
-        
-        first_look_proj1 = true
-      }
 
-      if(!first_look_proj2 && checkBoundProj(pg_two+0.5)){
         api_proj2_pic.start({
           x: 0,
-          opacity: opacity_pic
+          opacity: opacity_pic,
+          delay: 500
         })
         api_proj2_text.start({
           x: 0,
-          opacity: 1
+          opacity: 1,
+          delay: 500
         })
-        
-        first_look_proj2 = true
-      }
-      if(!first_look_proj3 && checkBoundProj(pg_two+0.7)){
+
         api_proj3_pic.start({
           x: 0,
-          opacity: opacity_pic
+          opacity: opacity_pic,
+          delay: 1000
         })
         api_proj3_text.start({
           x: 0,
-          opacity: 1
+          opacity: 1,
+          delay: 1000
+        })
+
+        first_look_proj1 = true
+      }
+
+      // if(!first_look_proj1 && checkBoundProj(pg_two+0.3)){
+      //   api_proj1_pic.start({
+      //     x: 0,
+      //     opacity: opacity_pic
+      //   })
+      //   api_proj1_text.start({
+      //     x: 0,
+      //     opacity: 1
+      //   })
+        
+      //   first_look_proj1 = true
+      // }
+
+      // if(!first_look_proj2 && checkBoundProj(pg_two+0.5)){
+      //   api_proj2_pic.start({
+      //     x: 0,
+      //     opacity: opacity_pic
+      //   })
+      //   api_proj2_text.start({
+      //     x: 0,
+      //     opacity: 1
+      //   })
+        
+      //   first_look_proj2 = true
+      // }
+      // if(!first_look_proj3 && checkBoundProj(pg_two+0.7)){
+      //   api_proj3_pic.start({
+      //     x: 0,
+      //     opacity: opacity_pic
+      //   })
+      //   api_proj3_text.start({
+      //     x: 0,
+      //     opacity: 1
+      //   })
+        
+      //   first_look_proj3 = true
+      // }
+
+      if(!first_look_socials && checkBoundProj(pg_two+1.6)){
+        console.log("test")
+        api_socials_insta.start({
+          opacity: 1,
+          y: 0
+        })
+        api_socials_link.start({
+          opacity: 1,
+          y: 0,
+          delay: 200
+        })
+        api_socials_git.start({
+          opacity: 1,
+          y: 0,
+          delay: 400
+        })
+        api_socials_face.start({
+          opacity: 1,
+          y: 0,
+          delay: 600
+        })
+
+        api_socials_line.start({
+          opacity: 1,
+          y: 0,
+          delay: 800
+        })
+
+        api_socials_mail.start({
+          opacity: 1,
+          y: 0,
+          delay: 1000
         })
         
-        first_look_proj3 = true
+        first_look_socials = true
       }
     }
   }
@@ -342,20 +446,20 @@ export function Mainpage(){
             
             </div>
         </animated.div>
-        <div className = "contact">
+        <animated.div className = "contact">
           <h1> Contact Me </h1>
            {/* <hr /> */}
           {/* <img src = {githubpic} alt = "git" width = "64px" height = "64px"></img>
           <img src = {instagrampic} alt = "insta" width = "64px" height = "64px"></img> */}
-          <div className = "socials">
-            <div className = "insta"><b>Instagram</b></div>
-            <div className = "link"><b>Linkedin</b></div>
-            <div className = "git"><b>Github</b></div>
-            <div className = "face"><b>Facebook</b></div>
-          </div>
-          <hr/>
-          <div className = "email">Stantonzeng@gmail.com</div>
-        </div>
+          <animated.div className = "socials">
+            <animated.div className = "insta" style = {styles_socials_insta}><b>Instagram</b></animated.div>
+            <animated.div className = "link" style = {styles_socials_link}><b>Linkedin</b></animated.div>
+            <animated.div className = "git" style = {styles_socials_git}><a href = "https://github.com/stantonzeng/sign-langauge-translator"><b>Github</b></a></animated.div>
+            <animated.div className = "face" style = {styles_socials_face}><b>Facebook</b></animated.div>
+          </animated.div>
+          <animated.hr style = {styles_socials_line}/>
+          <animated.div className = "email" style = {styles_socials_mail}>Stantonzeng@gmail.com</animated.div>
+        </animated.div>
       </ParallaxLayer>
 
       {/* Projects End */}
