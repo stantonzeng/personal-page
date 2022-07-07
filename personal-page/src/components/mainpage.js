@@ -405,22 +405,22 @@ export function Mainpage(){
     api_title_neg1.start({
       y: -70,
       opacity:0,
-      delay:2000
+      delay:1500
     })
     api_title_0.start({
       opacity:1,
       y: 0,
-      delay:2000
+      delay:1500
     })
     api_title_1.start({
       opacity:1,
       y: 0,
-      delay:2500
+      delay:2000
     })
     api_title_2.start({
       opacity:1,
       y: 0,
-      delay:3000
+      delay:2500
     })
     const container = document.querySelector('.test_layer')
     container.addEventListener('scroll', handleScroll)
