@@ -405,22 +405,22 @@ export function Mainpage(){
     api_title_neg1.start({
       y: -70,
       opacity:0,
-      delay:1500
+      delay:1000
     })
     api_title_0.start({
       opacity:1,
       y: 0,
-      delay:1500
+      delay:1000
     })
     api_title_1.start({
       opacity:1,
       y: 0,
-      delay:2000
+      delay:1500
     })
     api_title_2.start({
       opacity:1,
       y: 0,
-      delay:2500
+      delay:2000
     })
     const container = document.querySelector('.test_layer')
     container.addEventListener('scroll', handleScroll)
@@ -483,7 +483,10 @@ export function Mainpage(){
 
       <ParallaxLayer offset = {pg_two} speed = {pg_two_speed} >
         <animated.div style = {styles_two}>
-          <h1 className = "projects_title">Personal Projects</h1>
+          <div className = "projects_title">
+          <h1 >Personal Projects</h1>
+          <p className = "projects_subtitle">Click on the pictures for links</p>
+          </div>
             <div className = "project_grid">
 
                 <animated.div className = "proj1">
