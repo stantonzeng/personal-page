@@ -4,30 +4,61 @@ import { useSpring, animated, config } from '@react-spring/web'
 import teambalancerpic from './springboot.png'
 import tensorflowpic from './tensorflow.png'
 import reactspringpic from './react-spring.png'
-import githubpic from './GitHub-Mark-64px.png'
-import instagrampic from './instagramlogo.png'
+import resume from '../resume/Resume_Stanton_Zeng.pdf'
+import resumepic from './resume.png'
 import './mainpage.css'
 
+/*
+Note for future Stanton:
+
+If you want to change anything from this site, then you'll have to get used to it again. I don't think we engineered this 
+well enough since we built this by assigning every component of the website their own little variable constant to which
+we assigned them to useSpring to allow for the spring like animations. 
+
+This somehow works, but again its not well designed. We have ~600 lines of code that could be condensed down into 200 if 
+we were smarter. In addition to this, we have a bunch of odd values, such as the title-0.3 to track whether or not we see
+the title page or not. You may be asking me, "How did we get 0.3?". Answer is that we eyeballed it. Meaning that there are
+a bunch of these other values lying around that are eyeballed. Which also means that once we kind of change up the site, 
+things are gonna break and its going to be annoying to fix. So best of luck to future me, since you'll be fixing most of
+the stuff.
+
+This site is built off of tape and dreams. Hold it well and note that most of the code is redundant.
+
+-Stanton Zeng (7/7/2022)
+*/
+
+
+//Utilized where the title is placed and how fast
 const title = 0
 const title_speed = 1.3
 
+//Utilized where the about me is placed and how fast
 const pg_one = 0.8
 const pg_one_speed = 1.2
 
+//Utilized where the projects is placed and how fast
 const pg_two = pg_one+0.3
 const pg_two_speed = 1
 
-const pg_three = pg_two+1
-const pg_three_speed = 2
+//Value of the offset value from the contact page since the contact page is apart of pg_two... Basically just eyeball this value
+const contact_offset = 2.3
 
+//Opacity value for when we lose focus
 const opacity_val = 0.1
 
+//How far away each item is before they are looked at
 const first_look_val = 400
 
+//Opacity for pictures in projects
 const opacity_pic = 0.5
 
+//Total number of pgs
+const total_number_pages = 2.7
+
+//Location of where we are at
 var locat = 0
 
+//Checks if we are looking at a page
 function checkBound(placement){
   if(placement*500 <= locat && (placement+1)*500 >= locat){
     return true;
@@ -35,8 +66,9 @@ function checkBound(placement){
   return false;
 }
 
+//Checks if we are looking at a page but modified for projects
 function checkBoundProj(placement){
-  if((placement+0.65)*500 <= locat && (placement+2.1)*500 >= locat){
+  if((placement+0.65)*500 <= locat && (placement+2.3)*500 >= locat){
     return true;
   }
   return false;
@@ -45,8 +77,12 @@ function checkBoundProj(placement){
 
 export function Mainpage(){
   
+  //Dont change this
   const alignCenter = { display: 'flex', alignItems: 'center' }
 
+  // Bad way but this is a tacky way to start the configuration of each component of the website and connect it with
+  // the react-spring useSpring hook. Now every component will utilize useSpring animations.
+  // If we want a new component, just make a new one and assign its style to the new 'styles...'
   const [styles_title_neg1, api_title_neg1] = useSpring(() => ({
     opacity: 0,
     y: 100,
@@ -66,6 +102,9 @@ export function Mainpage(){
     opacity: 0,
     y: 200,
     config: config.slow }))
+  
+  const [styles_title, api_title] = useSpring(() => ({ 
+    opacity: 1 }))
   
   const [styles_one, api_one] = useSpring(() => ({ 
     opacity: 0 }))
@@ -117,6 +156,17 @@ export function Mainpage(){
     opacity: 0,
     x : -first_look_val }))
 
+  const [styles_proj4_pic, api_proj4_pic] = useSpring(() => ({ 
+    opacity: 0,
+    x : first_look_val }))
+  
+  const [styles_proj4_text, api_proj4_text] = useSpring(() => ({ 
+    opacity: 0,
+    x : -first_look_val }))
+
+  const [styles_contact, api_contact] = useSpring(() => ({ 
+    opacity: 1 }))
+
   const [styles_socials_insta, api_socials_insta] = useSpring(() => ({
     opacity: 0,
     y: 200
@@ -147,6 +197,7 @@ export function Mainpage(){
     y: 200
   }))
 
+  //When we first look at each page, we can trigger the animation and then set the first look to true
   var first_look_one_title = false
   var first_look_one_text1 = false;
   var first_look_one_text2 = false;
@@ -155,22 +206,22 @@ export function Mainpage(){
   var first_look_proj1 = false;
   var first_look_proj2 = false;
   var first_look_proj3 = false;
+  var first_look_proj4 = false;
   var first_look_socials = false;
 
   const parallax = useRef();
 
+  //When we see each page for the first time, we utilize UseSpring's api to trigger the animation
   const handleScroll = () => {
     if (parallax.current) {
       console.log(parallax.current.current)
       locat = parallax.current.current + 250;
       
-      if(checkBound(title)){
-        api_title_1.start({opacity : 1})
-        api_title_2.start({opacity : 1})
+      if(checkBound(title-0.2)){
+        api_title.start({opacity : 1})
       }
       else{
-        api_title_1.start({opacity : opacity_val})
-        api_title_2.start({opacity : opacity_val})
+        api_title.start({opacity : opacity_val})
       }
       
       
@@ -246,28 +297,6 @@ export function Mainpage(){
           opacity: 1
         })
 
-        // api_proj2_pic.start({
-        //   x: 0,
-        //   opacity: opacity_pic,
-        //   delay: 500
-        // })
-        // api_proj2_text.start({
-        //   x: 0,
-        //   opacity: 1,
-        //   delay: 500
-        // })
-
-        // api_proj3_pic.start({
-        //   x: 0,
-        //   opacity: opacity_pic,
-        //   delay: 1000
-        // })
-        // api_proj3_text.start({
-        //   x: 0,
-        //   opacity: 1,
-        //   delay: 1000
-        // })
-
         first_look_proj1 = true
       }
 
@@ -309,6 +338,19 @@ export function Mainpage(){
         first_look_proj3 = true
       }
 
+      if(!first_look_proj4 && checkBoundProj(pg_two+0.9)){
+        api_proj4_pic.start({
+          x: 0,
+          opacity: opacity_pic
+        })
+        api_proj4_text.start({
+          x: 0,
+          opacity: 1
+        })
+        
+        first_look_proj4 = true
+      }
+
       if(!first_look_socials && checkBoundProj(pg_two+1.6)){
         console.log("test")
         api_socials_insta.start({
@@ -345,9 +387,17 @@ export function Mainpage(){
         
         first_look_socials = true
       }
+
+      if(checkBound(pg_two+contact_offset)){
+        api_contact.start({opacity : 1})
+      }
+      else{
+        api_contact.start({opacity : opacity_val})
+      }
     }
   }
 
+  //Records the height and manages where we are looking at
   useEffect(() => {
     api_title_neg1.start({
       opacity:1
@@ -381,13 +431,14 @@ export function Mainpage(){
   }, [])
 
   return(
-    <Parallax ref = {parallax} className = 'test_layer' pages = {3}>
+    <Parallax ref = {parallax} className = 'test_layer' pages = {total_number_pages}>
+      {/* Title Start */}
       <ParallaxLayer speed={title_speed} style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center'  
     }}>
-      <div className = "title_div">
+      <animated.div className = "title_div" style = {styles_title}>
         <animated.div className = "name" style = {styles_title_0}>My name is:</animated.div>
         <animated.div className = "hello" style = {styles_title_neg1}>Hello!</animated.div>
         
@@ -399,9 +450,10 @@ export function Mainpage(){
         </animated.div>
         {/* <p className = "subTitle"> Stantonzeng@gmail.com </p> */}
         {/* <img src = {face} alt = "face"></img> */}
-      </div>
+      </animated.div>
       
       </ParallaxLayer>
+      {/* Title End */}
       
       {/* <ParallaxLayer offset ={pg_one} speed={pg_one_speed} style={{ backgroundColor: '#B3D9FF' }} /> */}
 
@@ -485,6 +537,22 @@ export function Mainpage(){
                     site and learn more about javascript and react. </div>
                   </animated.div>
                 </animated.div>
+
+                <animated.div className = "proj4">
+                  <a href = {resume}>
+                    <animated.div 
+                    onMouseEnter={() => api_proj4_pic.start({opacity:1})}
+                    onMouseLeave={() => api_proj4_pic.start({opacity:opacity_pic})}
+                    style = {styles_proj4_pic} className = "proj4_pic">
+                      <img src = {resumepic} alt = "4" width = "275px" height = "90%"></img>
+                    </animated.div>
+                  </a>
+                  <animated.div style = {styles_proj4_text} className = "proj4_text">
+                    <div className = "proj4_title"><b><i>Resume</i></b></div>
+                    <div className = "proj4_paragraph"> Or if you would like more information, then you can check out my 
+                    actual resume. </div>
+                  </animated.div>
+                </animated.div>
                 
                 {/* <animated.div className = "proj2">Project 2</animated.div>
                 <animated.div className = "proj3">Project 3</animated.div>
@@ -492,7 +560,12 @@ export function Mainpage(){
             
             </div>
         </animated.div>
-        <animated.div className = "contact">
+        
+        {/* Projects End */}
+
+        {/* Contact Start */}
+        
+        <animated.div className = "contact" style = {styles_contact}>
           <h1> Contact Me </h1>
            {/* <hr /> */}
           {/* <img src = {githubpic} alt = "git" width = "64px" height = "64px"></img>
@@ -507,19 +580,8 @@ export function Mainpage(){
           <animated.div className = "email" style = {styles_socials_mail}>Stantonzeng@gmail.com</animated.div>
         </animated.div>
       </ParallaxLayer>
-
-      {/* Projects End */}
-      {/* Contact Start */}
       
-      <ParallaxLayer offset = {pg_three} speed = {pg_three_speed}>
-        
-
-      </ParallaxLayer>
-
       {/* Contact End */}
-      {/* <ParallaxLayer offset = {3}>
-        <h1> test </h1>
-      </ParallaxLayer> */}
     </Parallax>
     );
 }
