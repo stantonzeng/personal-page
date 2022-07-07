@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
-import { useSpring, animated } from '@react-spring/web'
+import { useSpring, animated, config } from '@react-spring/web'
 import teambalancerpic from './springboot.png'
 import tensorflowpic from './tensorflow.png'
 import reactspringpic from './react-spring.png'
@@ -47,9 +47,25 @@ export function Mainpage(){
   
   const alignCenter = { display: 'flex', alignItems: 'center' }
 
-  const [styles_title, api_title] = useSpring(() => ({
+  const [styles_title_neg1, api_title_neg1] = useSpring(() => ({
     opacity: 0,
-    y : 100 }))
+    y: 100,
+    config: config.slow }))
+  
+  const [styles_title_0, api_title_0] = useSpring(() => ({
+    opacity: 0,
+    y: 170,
+    config: config.slow }))
+
+  const [styles_title_1, api_title_1] = useSpring(() => ({
+    opacity: 0,
+    y: 200,
+    config: config.slow }))
+
+  const [styles_title_2, api_title_2] = useSpring(() => ({
+    opacity: 0,
+    y: 200,
+    config: config.slow }))
   
   const [styles_one, api_one] = useSpring(() => ({ 
     opacity: 0 }))
@@ -60,15 +76,18 @@ export function Mainpage(){
 
   const [styles_one_text1, api_one_text1] = useSpring(() => ({ 
     opacity: 0,
-    y : first_look_val }))
+    y : first_look_val,
+    config: config.slow }))
 
   const [styles_one_text2, api_one_text2] = useSpring(() => ({ 
     opacity: 0,
-    y : first_look_val }))
+    y : first_look_val,
+    config: config.slow }))
 
   const [styles_one_text3, api_one_text3] = useSpring(() => ({ 
     opacity: 0,
-    y : first_look_val }))
+    y : first_look_val,
+    config: config.slow }))
 
   const [styles_two, api_two] = useSpring(() => ({ 
     opacity: 0,
@@ -134,8 +153,8 @@ export function Mainpage(){
   var first_look_one_text3 = false; 
   var first_look_two = false
   var first_look_proj1 = false;
-  // var first_look_proj2 = false;
-  // var first_look_proj3 = false;
+  var first_look_proj2 = false;
+  var first_look_proj3 = false;
   var first_look_socials = false;
 
   const parallax = useRef();
@@ -146,10 +165,12 @@ export function Mainpage(){
       locat = parallax.current.current + 250;
       
       if(checkBound(title)){
-        api_title.start({opacity : 1})
+        api_title_1.start({opacity : 1})
+        api_title_2.start({opacity : 1})
       }
       else{
-        api_title.start({opacity : opacity_val})
+        api_title_1.start({opacity : opacity_val})
+        api_title_2.start({opacity : opacity_val})
       }
       
       
@@ -173,17 +194,17 @@ export function Mainpage(){
         first_look_one_title = true
       }
 
-      if(!first_look_one_text1 && checkBound(pg_one+0.2)){
+      if(!first_look_one_text1 && checkBound(pg_one+0.1)){
         api_one_text1.start({
           y: 0,
-          opacity: 1
-          
+          opacity: 1,
+          height: 100          
         })
         
         first_look_one_text1 = true
       }
 
-      if(!first_look_one_text2 && checkBound(pg_one+0.4)){
+      if(!first_look_one_text2 && checkBound(pg_one+0.2)){
         api_one_text2.start({
           y: 0,
           opacity: 1
@@ -192,7 +213,7 @@ export function Mainpage(){
         first_look_one_text2 = true
       }
 
-      if(!first_look_one_text3 && checkBound(pg_one+0.6)){
+      if(!first_look_one_text3 && checkBound(pg_one+0.4)){
         api_one_text3.start({
           y: 0,
           opacity: 1
@@ -225,68 +246,68 @@ export function Mainpage(){
           opacity: 1
         })
 
-        api_proj2_pic.start({
-          x: 0,
-          opacity: opacity_pic,
-          delay: 500
-        })
-        api_proj2_text.start({
-          x: 0,
-          opacity: 1,
-          delay: 500
-        })
+        // api_proj2_pic.start({
+        //   x: 0,
+        //   opacity: opacity_pic,
+        //   delay: 500
+        // })
+        // api_proj2_text.start({
+        //   x: 0,
+        //   opacity: 1,
+        //   delay: 500
+        // })
 
-        api_proj3_pic.start({
-          x: 0,
-          opacity: opacity_pic,
-          delay: 1000
-        })
-        api_proj3_text.start({
-          x: 0,
-          opacity: 1,
-          delay: 1000
-        })
+        // api_proj3_pic.start({
+        //   x: 0,
+        //   opacity: opacity_pic,
+        //   delay: 1000
+        // })
+        // api_proj3_text.start({
+        //   x: 0,
+        //   opacity: 1,
+        //   delay: 1000
+        // })
 
         first_look_proj1 = true
       }
 
-      // if(!first_look_proj1 && checkBoundProj(pg_two+0.3)){
-      //   api_proj1_pic.start({
-      //     x: 0,
-      //     opacity: opacity_pic
-      //   })
-      //   api_proj1_text.start({
-      //     x: 0,
-      //     opacity: 1
-      //   })
+      if(!first_look_proj1 && checkBoundProj(pg_two+0.3)){
+        api_proj1_pic.start({
+          x: 0,
+          opacity: opacity_pic
+        })
+        api_proj1_text.start({
+          x: 0,
+          opacity: 1
+        })
         
-      //   first_look_proj1 = true
-      // }
+        first_look_proj1 = true
+      }
 
-      // if(!first_look_proj2 && checkBoundProj(pg_two+0.5)){
-      //   api_proj2_pic.start({
-      //     x: 0,
-      //     opacity: opacity_pic
-      //   })
-      //   api_proj2_text.start({
-      //     x: 0,
-      //     opacity: 1
-      //   })
+      if(!first_look_proj2 && checkBoundProj(pg_two+0.5)){
+        api_proj2_pic.start({
+          x: 0,
+          opacity: opacity_pic
+        })
+        api_proj2_text.start({
+          x: 0,
+          opacity: 1
+        })
         
-      //   first_look_proj2 = true
-      // }
-      // if(!first_look_proj3 && checkBoundProj(pg_two+0.7)){
-      //   api_proj3_pic.start({
-      //     x: 0,
-      //     opacity: opacity_pic
-      //   })
-      //   api_proj3_text.start({
-      //     x: 0,
-      //     opacity: 1
-      //   })
+        first_look_proj2 = true
+      }
+      if(!first_look_proj3 && checkBoundProj(pg_two+0.7)){
+        api_proj3_pic.start({
+          x: 0,
+          opacity: opacity_pic
+        })
+        api_proj3_text.start({
+          x: 0,
+          opacity: 1
+        })
         
-      //   first_look_proj3 = true
-      // }
+        first_look_proj3 = true
+      }
 
       if(!first_look_socials && checkBoundProj(pg_two+1.6)){
         console.log("test")
@@ -328,9 +349,28 @@ export function Mainpage(){
   }
 
   useEffect(() => {
-    api_title.start({
-      y: 0,
+    api_title_neg1.start({
       opacity:1
+    })
+    api_title_neg1.start({
+      y: -70,
+      opacity:0,
+      delay:2000
+    })
+    api_title_0.start({
+      opacity:1,
+      y: 0,
+      delay:2000
+    })
+    api_title_1.start({
+      opacity:1,
+      y: 0,
+      delay:2500
+    })
+    api_title_2.start({
+      opacity:1,
+      y: 0,
+      delay:3000
     })
     const container = document.querySelector('.test_layer')
     container.addEventListener('scroll', handleScroll)
@@ -348,10 +388,16 @@ export function Mainpage(){
       alignItems: 'center'  
     }}>
       <div className = "title_div">
-        <animated.div style = {styles_title}>
-          <h1 className = "title">Stanton Zeng</h1>
-          {/* <p className = "subTitle"> Stantonzeng@gmail.com </p> */}
+        <animated.div className = "name" style = {styles_title_0}>My name is:</animated.div>
+        <animated.div className = "hello" style = {styles_title_neg1}>Hello!</animated.div>
+        
+        <animated.div className = "stanton" style = {styles_title_1}>
+          <h1 className = "title">Stanton </h1>
         </animated.div>
+        <animated.div className = "zeng" style = {styles_title_2}>
+          <h1 className = "title">Zeng</h1>
+        </animated.div>
+        {/* <p className = "subTitle"> Stantonzeng@gmail.com </p> */}
         {/* <img src = {face} alt = "face"></img> */}
       </div>
       
@@ -452,10 +498,10 @@ export function Mainpage(){
           {/* <img src = {githubpic} alt = "git" width = "64px" height = "64px"></img>
           <img src = {instagrampic} alt = "insta" width = "64px" height = "64px"></img> */}
           <animated.div className = "socials">
-            <animated.div className = "insta" style = {styles_socials_insta}><b>Instagram</b></animated.div>
-            <animated.div className = "link" style = {styles_socials_link}><b>Linkedin</b></animated.div>
-            <animated.div className = "git" style = {styles_socials_git}><a href = "https://github.com/stantonzeng/sign-langauge-translator"><b>Github</b></a></animated.div>
-            <animated.div className = "face" style = {styles_socials_face}><b>Facebook</b></animated.div>
+            <animated.div className = "insta" style = {styles_socials_insta}><a href = "https://www.instagram.com/stanelystanstan/"><b>Instagram</b></a></animated.div>
+            <animated.div className = "link" style = {styles_socials_link}><a href = "https://www.linkedin.com/in/stanton-zeng-498215187/"><b>Linkedin</b></a></animated.div>
+            <animated.div className = "git" style = {styles_socials_git}><a href = "https://github.com/stantonzeng/"><b>Github</b></a></animated.div>
+            <animated.div className = "face" style = {styles_socials_face}><a href = "https://www.facebook.com/stanton.zeng/"><b>Facebook</b></a></animated.div>
           </animated.div>
           <animated.hr style = {styles_socials_line}/>
           <animated.div className = "email" style = {styles_socials_mail}>Stantonzeng@gmail.com</animated.div>
