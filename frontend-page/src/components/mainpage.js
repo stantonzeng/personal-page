@@ -502,9 +502,9 @@ export function Mainpage(){
                   </a>
                   <animated.div style = {styles_proj1_text} className = "proj1_text">
                     <div className = "proj1_title"><b><i>React Java Springboot Postgresql AWS GCP</i></b></div>
-                    <div className = "proj1_paragraph"> Teambalancer is a project that stores player information using a modified version of
+                    <div className = "proj1_paragraph"> Teambalancer is a fullstack application that stores player information using a modified version of
                     the conventional FIDE elo system. It generates balanced and fair teams using the selected players needed. I deployed the 
-                    web app using AWS and Google Cloud Platflorm.</div>
+                    web app using AWS and Google Cloud Platform.</div>
                   </animated.div>
                 </animated.div>
 
@@ -536,8 +536,8 @@ export function Mainpage(){
                   </a>
                   <animated.div style = {styles_proj3_text} className = "proj3_text">
                     <div className = "proj3_title"><b><i>Reactjs React-Spring HTML/CSS</i></b></div>
-                    <div className = "proj3_paragraph"> As more practice with front end design, I decided to revamp my old personal projects
-                    site and learn more about javascript and react. </div>
+                    <div className = "proj3_paragraph"> To get more practice with front end design, I decided to revamp my old personal projects
+                    site to learn more about Javascript and React. </div>
                   </animated.div>
                 </animated.div>
 
@@ -552,7 +552,7 @@ export function Mainpage(){
                   </a>
                   <animated.div style = {styles_proj4_text} className = "proj4_text">
                     <div className = "proj4_title"><b><i>Resume</i></b></div>
-                    <div className = "proj4_paragraph"> Or if you would like more information, then you can check out my 
+                    <div className = "proj4_paragraph"> If you would like more information, then you can check out my 
                     actual resume. </div>
                   </animated.div>
                 </animated.div>
