@@ -4,7 +4,7 @@ import { useSpring, animated, config } from '@react-spring/web'
 import teambalancerpic from './springboot.png'
 import tensorflowpic from './tensorflow.png'
 import reactspringpic from './react-spring.png'
-import resume from './Resume_Stanton_Zeng.pdf'
+import resume from '../resume/Resume_Stanton_Zeng.pdf'
 import resumepic from './resume.png'
 import './mainpage.css'
 
@@ -73,6 +73,7 @@ function checkBoundProj(placement){
   }
   return false;
 }
+
 
 
 export function Mainpage(){
@@ -429,6 +430,10 @@ export function Mainpage(){
       container.removeEventListener('scroll', handleScroll)
     }
   }, [])
+  
+  const onResumeClick = () => {
+    window.open(resume);
+  }
 
   return(
     <Parallax ref = {parallax} className = 'test_layer' pages = {total_number_pages}>
@@ -542,7 +547,7 @@ export function Mainpage(){
                 </animated.div>
 
                 <animated.div className = "proj4">
-                  <a href = {resume} target="_blank" rel="noreferrer">
+                  <a onClick = {onResumeClick}>
                     <animated.div 
                     onMouseEnter={() => api_proj4_pic.start({opacity:1})}
                     onMouseLeave={() => api_proj4_pic.start({opacity:opacity_pic})}
