@@ -542,7 +542,7 @@ export function Mainpage(){
                 </animated.div>
 
                 <animated.div className = "proj4">
-                  <a href = {resume}>
+                  <a href = {resume} target="_blank" rel="noreferrer">
                     <animated.div 
                     onMouseEnter={() => api_proj4_pic.start({opacity:1})}
                     onMouseLeave={() => api_proj4_pic.start({opacity:opacity_pic})}
