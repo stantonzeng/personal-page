@@ -4,7 +4,7 @@ import { useSpring, animated, config } from '@react-spring/web'
 import teambalancerpic from './springboot.png'
 import tensorflowpic from './tensorflow.png'
 import reactspringpic from './react-spring.png'
-import resume from '../resume/Resume_Stanton_Zeng.pdf'
+import resume from './Resume_Stanton_Zeng.pdf'
 import resumepic from './resume.png'
 import './mainpage.css'
 
