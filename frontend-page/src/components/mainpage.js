@@ -26,7 +26,7 @@ This site is built off of tape and dreams. Hold it well and note that most of th
 
 -Stanton Zeng (7/7/2022)
 */
-
+ 
 
 //Utilized where the title is placed and how fast
 const title = 0
