@@ -8,8 +8,23 @@ import resume from '../resume/Resume_Stanton_Zeng.pdf'
 import resumepic from './resume.png'
 import './mainpage.css'
 
+// Notes for future Stanton section:
+
 /*
-Note for future Stanton:
+
+Hi
+
+I essentially copied over the old mainpage javascript into this folder so that the dependencies would work properly. There
+was some strange issues with react and hosting on AWS...
+
+No I did not make the code more optimal. I know and I'm sorry future Stanton. Hopefully you'll be better at designing
+then I am.
+
+-Stanton Zeng (8/28/2023)
+
+*/
+
+/*
 
 If you want to change anything from this site, then you'll have to get used to it again. I don't think we engineered this 
 well enough since we built this by assigning every component of the website their own little variable constant to which
