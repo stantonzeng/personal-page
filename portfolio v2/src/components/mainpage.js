@@ -486,10 +486,9 @@ function Mainpage(){
             <animated.h1 className = "projects_title" style = {styles_one_title}>About Me</animated.h1>
             <animated.p className = "text1" style = {styles_one_text1}> I am a Physics new grad from UCR (University of California, Riverside)
             turned Software Developer at General Atomics.  </animated.p>
-            <animated.p className = "text1" style = {styles_one_text2}>During my time in college, I was active with the Aerospace Systems club and a member
-            of the American Institute of Chemical Engineers, as I was originally a Chemical Engineer. I also did research under Professor Simeon Bird
-            with Phoebe Upton Sanderbeck as my advisor. There, I analyzed cosmological simulations through parameter tuning and studied the change 
-            in universe formations.  </animated.p>
+            <animated.p className = "text1" style = {styles_one_text2}>Currently, I work with the Radar Systems team in the aeronautical division. I've worked on
+            projects that improve radar classification models, fix vulnerabilities in legacy software, and developed engineer-facing sensor tools. Throughout
+            my time at GA, I've used mostly C++, Python, & Javascript. I also have a security clearance!</animated.p>
             <animated.p className = "text1" style = {styles_one_text3}>In my spare time, I like to code side projects to learn new technology that I find interesting. Beyond programming,
             I love watching movies, playing video games, and going rock climbing.</animated.p>
            </div> 
@@ -557,7 +556,7 @@ function Mainpage(){
                   <animated.div style = {styles_proj3_text} className = "proj3_text">
                     <div className = "proj3_title"><b><i>Reactjs React-Spring HTML/CSS</i></b></div>
                     <div className = "proj3_paragraph"> To get more practice with front end design, I decided to revamp my old personal projects
-                    site to learn more about Javascript and React. </div>
+                    site to learn more about Javascript and React. You are looking at it right now! </div>
                   </animated.div>
                 </animated.div>
 
