@@ -144,6 +144,11 @@ function Mainpage(){
     y : first_look_val,
     config: config.slow }))
 
+  const [styles_one_text4, api_one_text4] = useSpring(() => ({ 
+    opacity: 0,
+    y : first_look_val,
+    config: config.slow }))
+
   const [styles_two, api_two] = useSpring(() => ({ 
     opacity: 0,
     y : first_look_val }))
@@ -214,10 +219,11 @@ function Mainpage(){
   }))
 
   //When we first look at each page, we can trigger the animation and then set the first look to true
-  var first_look_one_title = false
+  var first_look_one_title = false;
   var first_look_one_text1 = false;
   var first_look_one_text2 = false;
-  var first_look_one_text3 = false; 
+  var first_look_one_text3 = false;
+  var first_look_one_text4 = false; 
   var first_look_two = false
   var first_look_proj1 = false;
   var first_look_proj2 = false;
@@ -287,6 +293,15 @@ function Mainpage(){
         })
         
         first_look_one_text3 = true
+      }
+
+      if(!first_look_one_text4 && checkBound(pg_one+0.5)){
+        api_one_text4.start({
+          y: 0,
+          opacity: 1
+        })
+        
+        first_look_one_text4 = true
       }
 
       if(!first_look_two && checkBoundProj(pg_two+0.1)){
@@ -488,9 +503,10 @@ function Mainpage(){
             turned Software Developer at General Atomics.  </animated.p>
             <animated.p className = "text1" style = {styles_one_text2}>Currently, I work with the Radar Systems team in the aeronautical division. I've worked on
             projects that improve radar classification models, fix vulnerabilities in legacy software, and developed engineer-facing sensor tools. Throughout
-            my time at GA, I've used mostly C++, Python, & Javascript. I also have a security clearance!</animated.p>
+            my time at GA, I've used mostly C++, Python, & Javascript. Not the most updated tech stack, but my projects make up for it.</animated.p>
             <animated.p className = "text1" style = {styles_one_text3}>In my spare time, I like to code side projects to learn new technology that I find interesting. Beyond programming,
             I love watching movies, playing video games, and going rock climbing.</animated.p>
+            <animated.p className = "text1" style = {styles_one_text4}>For those who are asking, yes I have a security clearance.</animated.p>
            </div> 
         </animated.div>
          
